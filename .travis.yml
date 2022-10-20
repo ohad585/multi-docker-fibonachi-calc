@@ -23,4 +23,15 @@ after_success:
   - docker push ohad585/multi-server
   - docker push ohad585/multi-worker
 
- 
+deploy:
+  provider: elasticbeanstalk
+  region: us-west-1
+  app: multi-docker
+  env: MultiDocker-env
+  bucket_name: elasticbeanstalk-us-west-1-306476627547
+  bucket_path: docker-multi
+  on :
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_ley:
+    secure: $AWS_SECRET_KEY
